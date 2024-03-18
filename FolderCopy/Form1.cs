@@ -28,11 +28,20 @@ namespace FolderCopy
                 string sourceDirName = textBox1.Text;
                 // コピー後のディレクトリパス
                 string destDirName = textBox2.Text;
+                string pathnamesource=Path.GetFileName(sourceDirName);
+                string pathnamedest=Path.GetFileName(destDirName);
+                /*if (pathnamesource!=".minecraft"||pathnamedest!=".minecraft") {
+                    MessageBox.Show("パスは[.minecraft]まで必要です");
+                }*/
  
 
                 // ディレクトリをコピーする
                 CopyDirectory(sourceDirName, destDirName);
-                if (!options.Checked && !config.Checked && !resourcepacks.Checked && !schematics.Checked && !saves.Checked && !screenshots.Checked && !XaeroWaypoints.Checked && !XaeroWorldMap.Checked && !String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox2.Text))
+                if (pathnamesource != ".minecraft" || pathnamedest != ".minecraft")
+                {
+                    MessageBox.Show("パスは[.minecraft]まで必要です");
+                }
+                else if (!options.Checked && !config.Checked && !resourcepacks.Checked && !schematics.Checked && !saves.Checked && !screenshots.Checked && !XaeroWaypoints.Checked && !XaeroWorldMap.Checked && !String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox2.Text))
                 {
                     MessageBox.Show("何も選択されていません");
                 }
@@ -144,7 +153,7 @@ namespace FolderCopy
             string[] files = Directory.GetFiles(sourceDirName);
             foreach (string file in files)
             {
-                if (Path.GetFileName(file) == "hanemod-client.toml")
+                if (Path.GetFileName(file) == "hanemod-client.json")
                 {
                     Console.WriteLine("hanemodのconfigは移行できません");
                 }
