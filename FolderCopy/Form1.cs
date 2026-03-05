@@ -37,7 +37,7 @@ namespace FolderCopy
 
                 // ディレクトリをコピーする
                 CopyDirectory(sourceDirName, destDirName);
-                if (pathnamesource != ".minecraft" || pathnamedest != ".minecraft")
+                if (pathnamesource != "minecraft" || pathnamedest != "minecraft")
                 {
                     MessageBox.Show("パスは[.minecraft]まで必要です");
                 }
